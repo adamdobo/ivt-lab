@@ -40,7 +40,11 @@ public class GT4500 implements SpaceShip {
 
     switch (firingMode) {
       case SINGLE:
+<<<<<<< HEAD
         if (wasPrimaryFiredLast && (firingSuccess == true || firingSuccess == false)) {
+=======
+        if (wasPrimaryFiredLast && (firingSuccess == false || firingSuccess == true)) {
+>>>>>>> branch-B
           // try to fire the secondary first
           if (! secondaryTorpedoStore.isEmpty()) {
             firingSuccess = secondaryTorpedoStore.fire(1);
