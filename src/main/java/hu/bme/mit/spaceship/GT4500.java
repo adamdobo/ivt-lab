@@ -44,18 +44,17 @@ public class GT4500 implements SpaceShip {
         break;
 
       case ALL:
-	firingSuccess = allFire();
+	      firingSuccess = allFire();
         break;
     }
-
     return firingSuccess;
   }
 
   private boolean singleFire(){
        boolean firingSuccess = false;
-	if (wasPrimaryFiredLast) {
+	      if (wasPrimaryFiredLast) {
           // try to fire the secondary first
-		if (! secondaryTorpedoStore.isEmpty()) {
+		      if (! secondaryTorpedoStore.isEmpty()) {
             firingSuccess = secondaryTorpedoStore.fire(1);
             wasPrimaryFiredLast = false;
           }
@@ -92,16 +91,16 @@ public class GT4500 implements SpaceShip {
   }
   
   private boolean allFire(){
-        boolean firingSuccess = false;
-	if(!primaryTorpedoStore.isEmpty()){
-		firingSuccess = primaryTorpedoStore.fire(1);
-		wasPrimaryFiredLast = true;
-	}
-	if(!secondaryTorpedoStore.isEmpty()){
-		firingSuccess = secondaryTorpedoStore.fire(1);
-		wasPrimaryFiredLast = false;	
-	}
-	return firingSuccess;
+    boolean firingSuccess = false;
+	  if(!primaryTorpedoStore.isEmpty()){
+		  firingSuccess = primaryTorpedoStore.fire(1);
+		  wasPrimaryFiredLast = true;
+	  }
+	  if(!secondaryTorpedoStore.isEmpty()){
+		  firingSuccess = secondaryTorpedoStore.fire(1);
+		  wasPrimaryFiredLast = false;	
+	  }
+	  return firingSuccess;
   }
 
 }
