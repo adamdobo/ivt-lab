@@ -43,4 +43,27 @@ public class GT4500Test {
     assertEquals(true, result);
   }
 
+  @Test
+  public void fireTorpedo_Single_Success_2(){
+      // Arrange
+
+      // Act
+      ship.fireTorpedo(FiringMode.SINGLE);
+
+      // Assert
+      verify(mockPrimary).fire(1);
+  }
+
+    @Test
+    public void fireTorpedo_All_Success_2(){
+        // Arrange
+
+        // Act
+        ship.fireTorpedo(FiringMode.ALL);
+
+        // Assert
+        verify(mockPrimary).fire(mockPrimary.getTorpedoCount());
+        verify(mockSecondary).fire(mockSecondary.getTorpedoCount());
+    }
+
 }
