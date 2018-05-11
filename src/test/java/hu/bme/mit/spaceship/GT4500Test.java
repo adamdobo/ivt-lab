@@ -121,5 +121,13 @@ public class GT4500Test {
         verify(mockPrimary).fire(mockPrimary.getTorpedoCount());
     }
 
+    @Test
+    public void isEmptyAfterAllfire(){
+        ship.fireTorpedo(FiringMode.ALL);
+
+        assertEquals(0, mockPrimary.getTorpedoCount());
+        assertEquals(0, mockSecondary.getTorpedoCount());
+    }
+
 
 }
