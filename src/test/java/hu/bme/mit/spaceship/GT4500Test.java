@@ -66,4 +66,60 @@ public class GT4500Test {
         verify(mockSecondary).fire(mockSecondary.getTorpedoCount());
     }
 
+    @Test
+    public void primaryFired(){
+        // Arrange
+        when(mockPrimary.fire(1)).thenReturn(true);
+        // Act
+        boolean result = ship.fireTorpedo(FiringMode.SINGLE);
+
+        // Assert
+        assertEquals(true, result);
+    }
+
+    @Test
+    public void secondaryFired(){
+        when(mockSecondary.fire(1)).thenReturn(true);
+
+        ship.fireTorpedo(FiringMode.SINGLE);
+        boolean result = ship.fireTorpedo(FiringMode.SINGLE);
+
+        assertEquals(true, result);
+    }
+
+    @Test
+    public void bothEmpty(){
+        when(mockPrimary.fire(1)).thenReturn(false);
+        when(mockSecondary.fire(1)).thenReturn(false);
+
+        boolean primResult = ship.fireTorpedo(FiringMode.SINGLE);
+        boolean secResult = ship.fireTorpedo(FiringMode.SINGLE);
+
+        assertEquals(false, primResult);
+        assertEquals(false, secResult);
+    }
+
+    @Test
+    public void fireOnlySec(){
+        when(mockPrimary.isEmpty()).thenReturn(true);
+        when(mockSecondary.isEmpty()).thenReturn(false);
+
+        ship.fireTorpedo(FiringMode.ALL);
+
+        verify(mockPrimary, never()).fire(mockPrimary.getTorpedoCount());
+        verify(mockSecondary).fire(mockSecondary.getTorpedoCount());
+    }
+
+    @Test
+    public void fireOnlyPrimary(){
+        when(mockSecondary.isEmpty()).thenReturn(true);
+        when(mockPrimary.isEmpty()).thenReturn(false);
+
+        ship.fireTorpedo(FiringMode.ALL);
+
+        verify(mockSecondary, never()).fire(mockSecondary.getTorpedoCount());
+        verify(mockPrimary).fire(mockPrimary.getTorpedoCount());
+    }
+
+
 }
